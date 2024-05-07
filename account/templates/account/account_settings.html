@@ -1,0 +1,36 @@
+{%extends 'account/main.html'%}
+{% load static %}
+{%block content%}
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{%url 'user_profile'%}">go back to profile</a>
+                    <h3>Account Settings</h3>
+                    {%if request.user.customer.profile_pic%}
+                    
+                    <image style="width: 80px; height: 60px; border-radius: 50%;" src="{{request.user.customer.profile_pic.url}}">
+                    {{request.user.customer.profile_pic.url}}
+                    {%else%}
+                    <image src="{%static 'images/poto.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        {{form.as_p}}
+                        <input type="submit" value="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+{%endblock%}

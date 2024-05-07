@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Registration Form</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {%csrf_token%}
+                            <div class="form-group">
+                                <label for="name" display="block">Name</label>
+                                {{form.username}}
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                {{form.email}}
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                {{form.password1}}
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                {{form.password2}}
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </form>
+                        {{form.errors}}
+                        <h5>Already Have an Account?</h5>
+                        <a style="text-decoration: none;" href="{%url 'login_page'%}">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
