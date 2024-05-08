@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-31@u-k2kxu5no6=fad=wyn(v()&d@qjt7q^ng9()h&zlw=!h4(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1','.now.sh']
 
 
 # Application definition
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'railway',
+        'USER':'postgres',
+        'PASSWORD':'YvAgfhBkRuZgqOdBdidtwVlaOCKBtiQg', 
+        'HOST':'roundhouse.proxy.rlwy.net',
+        'PORT':'22839',        
     }
 }
 
@@ -123,6 +127,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 #for media
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 #MEDIA_ROOT =BASE_DIR/'upload'
