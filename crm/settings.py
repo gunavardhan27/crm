@@ -110,7 +110,8 @@ DATABASES = {
         'PORT':'22839',        
     }
 }
-DATABASES['default']=dj_database_url.parse("postgres://my_django_db_user:bakdqlxf7Ment3HoRLZpiXRLh1xyF7ed@dpg-coubc3en7f5s73b32lgg-a.oregon-postgres.render.com/my_django_db")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default']=dj_database_url.parse(database_url)
 #postgres://my_django_db_user:bakdqlxf7Ment3HoRLZpiXRLh1xyF7ed@dpg-coubc3en7f5s73b32lgg-a.oregon-postgres.render.com/my_django_db
     
 
