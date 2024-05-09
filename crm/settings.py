@@ -31,8 +31,8 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
-DEBUG=False
-ALLOWED_HOSTS = ['*']
+DEBUG=os.environ.get("DEBUG","False").lower()=='true'
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 #if not IS_HEROKU_APP:
  #   DEBUG = True
 #if IS_HEROKU_APP:
@@ -95,24 +95,13 @@ import dj_database_url
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-if IS_HEROKU_APP:
-    # In production on Heroku the database configuration is derived from the `DATABASE_URL`
-    # environment variable by the dj-database-url package. `DATABASE_URL` will be set
-    # automatically by Heroku when a database addon is attached to your Heroku app. See:
-    # https://devcenter.heroku.com/articles/provisioning-heroku-postgres
-    # https://github.com/jazzband/dj-database-url
-    DATABASES = {
-        "default": dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=True,
-        ),
-    }
-else:
+
+
     # When running locally in development or in CI, a sqlite database file will be used instead
     # to simplify initial setup. Longer term it's recommended to use Postgres locally too.
-    DATABASES = {
-    'default': {
+
+DATABASES = {
+   'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'railway',
         'USER':'postgres',
@@ -121,6 +110,8 @@ else:
         'PORT':'22839',        
     }
 }
+DATABASES['default']=dj_database_url.parse("postgres://my_django_db_user:bakdqlxf7Ment3HoRLZpiXRLh1xyF7ed@dpg-coubc3en7f5s73b32lgg-a.oregon-postgres.render.com/my_django_db")
+#postgres://my_django_db_user:bakdqlxf7Ment3HoRLZpiXRLh1xyF7ed@dpg-coubc3en7f5s73b32lgg-a.oregon-postgres.render.com/my_django_db
     
 
 
