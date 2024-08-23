@@ -29,10 +29,11 @@ SECRET_KEY = os.environ.get(
     default=secrets.token_urlsafe(nbytes=64),
 )
 # SECURITY WARNING: don't run with debug turned on in production!
-IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
+#IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 DEBUG=os.environ.get("DEBUG","False").lower()=='true'
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+#ALLOWED_HOSTS = []
 #if not IS_HEROKU_APP:
  #   DEBUG = True
 #if IS_HEROKU_APP:
@@ -111,7 +112,7 @@ DATABASES = {
     }
 }
 database_url = os.environ.get("DATABASE_URL")
-DATABASES['default']=dj_database_url.parse(database_url)
+DATABASES['default']=dj_database_url.parse('postgresql://postgres_561v_user:eUt98mLwYTtxm3LSgtI3FiKPars4lh2h@dpg-cr47cq3v2p9s73cnchig-a.oregon-postgres.render.com/postgres_561v')
 #postgres://my_django_db_user:bakdqlxf7Ment3HoRLZpiXRLh1xyF7ed@dpg-coubc3en7f5s73b32lgg-a.oregon-postgres.render.com/my_django_db
     
 
