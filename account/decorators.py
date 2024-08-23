@@ -27,6 +27,6 @@ def admin_only(view_func):
             group=request.user.groups.all()[0].name
             if group=='customers':
                 return redirect('/user')
-            
             return view_func(request,*args,**kwargs)
+        return HttpResponse('you are not authorized to view this page')
     return wrapper_func
